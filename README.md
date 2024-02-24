@@ -1,4 +1,6 @@
 # B2-iOS-API-NewsFeed
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/safroalex/B1-PostgreSQLAutoServiceERP/blob/main/LICENSE)
+
 
 <!-- https://whimsical.com/c4-model-for-ios-app-with-java-backend-TfVUnyFGDf7ojWucZ39EJR] -->
 <img width="1096" alt="image" src="https://github.com/safroalex/B2-iOS-API-NewsFeed/assets/105920089/e306b113-bb4c-4bb7-ae26-5795854eb248">
@@ -43,7 +45,3 @@
 ### 6. Развертывание
 - Контейнеризация приложения с помощью Docker.
 - Развертывание на сервере и настройка NGINX.
-
-## Контакты
-Для связи и предложений используйте [ссылку на ваш профиль GitHub или другой контакт].
-
