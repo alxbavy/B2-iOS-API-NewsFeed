@@ -25,7 +25,6 @@ public class Beans {
     @Bean
     public Keycloak keycloak(){
 
-
         return KeycloakBuilder.builder()
                 .serverUrl(authServerUrl)
                 .realm(realm)

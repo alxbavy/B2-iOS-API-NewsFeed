@@ -47,7 +47,8 @@ public class WebSecurityConfig {
         return (web) -> {
             web.ignoring().requestMatchers(
                     HttpMethod.POST,
-                    "/public/**"
+                    "/public/**",
+                    "/users"
             );
             web.ignoring().requestMatchers(
                     HttpMethod.GET,

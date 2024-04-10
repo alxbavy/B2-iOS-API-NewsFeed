@@ -10,7 +10,7 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: http://localhost:8080/realms/AuthB2
+          issuer-uri: http://localhost:8080/admin/realms/AuthB2
 jwt:
   auth:
     converter:
@@ -20,7 +20,7 @@ keycloak:
   realm: AuthB2
   domain: localhost:8080
   adminClientId: admin-cli
-  adminClientSecret: 0wu8aoeRD784THt4GvMzVLfuxbzDY7wZ
+  adminClientSecret: tClZUM5repAOiO5NbLbVuytjA0beEJZ0
   client: authClientId
   urls:
     auth: http://${keycloak.domain}

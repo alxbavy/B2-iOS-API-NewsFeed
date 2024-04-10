@@ -35,9 +35,7 @@ public class KeycloakUserServiceImpl implements KeycloakUserService{
         user.setEmail(userRegistrationRecord.email());
         user.setFirstName(userRegistrationRecord.firstName());
         user.setLastName(userRegistrationRecord.lastName());
-        user.setEmailVerified(false);
-        user.setAttributes(Collections.singletonMap("email_verified", Arrays.asList("false")));
-        user.setRealmRoles(Arrays.asList("user"));
+        user.setEmailVerified(true);
 
         CredentialRepresentation credentialRepresentation=new CredentialRepresentation();
         credentialRepresentation.setValue(userRegistrationRecord.password());
@@ -48,13 +46,25 @@ public class KeycloakUserServiceImpl implements KeycloakUserService{
         list.add(credentialRepresentation);
         user.setCredentials(list);
 
-        UsersResource userResource = getUsersResource();
+        UsersResource usersResource = getUsersResource();
 
-        Response response = userResource.create(user);
+        Response response = usersResource.create(user);
+
         if(Objects.equals(201,response.getStatus())){
-            return userRegistrationRecord;
+
+            List<UserRepresentation> representationList = usersResource.searchByUsername(userRegistrationRecord.username(), true);
+            if(!CollectionUtils.isEmpty(representationList)){
+                UserRepresentation userRepresentation1 = representationList.stream().filter(userRepresentation -> Objects.equals(false, userRepresentation.isEmailVerified())).findFirst().orElse(null);
+                assert userRepresentation1 != null;
+                emailVerification(userRepresentation1.getId());
+            }
+            return  userRegistrationRecord;
         }
+
+//        response.readEntity()
+
         return null;
+
     }
 
     private UsersResource getUsersResource() {
