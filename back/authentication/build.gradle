@@ -16,16 +16,23 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+//	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	compileOnly 'org.projectlombok:lombok:1.18.30'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.springframework.boot:spring-boot-testcontainers'
-	testImplementation 'org.springframework.security:spring-security-test'
-	testImplementation 'org.testcontainers:junit-jupiter'
-}
+	implementation 'org.keycloak:keycloak-admin-client:23.0.6'
+	implementation 'org.springframework.security:spring-security-config:6.0.8'
+	implementation 'org.keycloak:keycloak-policy-enforcer:23.0.1'
+	implementation 'org.keycloak:keycloak-core:18.0.12'
+	implementation "org.springframework.boot:spring-boot-starter-oauth2-resource-server:3.2.2"
+	implementation "org.keycloak:keycloak-policy-enforcer:23.0.1"
+	implementation "org.keycloak:keycloak-core:23.0.7"
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0'
 
+
+
+
+}
 tasks.named('test') {
 	useJUnitPlatform()
 }
