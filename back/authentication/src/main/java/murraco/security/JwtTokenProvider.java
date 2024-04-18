@@ -1,9 +1,6 @@
 package murraco.security;
 
-import java.util.Base64;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
@@ -46,10 +43,10 @@ public class JwtTokenProvider {
     secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
   }
 
-  public String createToken(String username, List<AppUserRole> appUserRoles) {
+  public String createToken(String username, AppUserRole appUserRoles) {
 
     Claims claims = Jwts.claims().setSubject(username);
-    claims.put("auth", appUserRoles.stream().map(s -> new SimpleGrantedAuthority(s.getAuthority())).filter(Objects::nonNull).collect(Collectors.toList()));
+    claims.put("auth", Collections.singletonList(new SimpleGrantedAuthority(appUserRoles.getAuthority())));
 
     Date now = new Date();
     Date validity = new Date(now.getTime() + validityInMilliseconds);

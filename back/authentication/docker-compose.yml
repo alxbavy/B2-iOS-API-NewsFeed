@@ -1,0 +1,35 @@
+version: '3.8'
+services:
+  auth-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      - backend
+    ports:
+      - "8080:8080"
+  service-db:
+    image: postgres:15-alpine3.19
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=users
+    networks:
+      - backend
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    restart: unless-stopped
+volumes:
+  db-data:
+
+networks:
+  backend:
+    driver: bridge

@@ -27,7 +27,7 @@ public class UserService {
   public String signin(String email, String password) {
     try {
       authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, password));
-      return jwtTokenProvider.createToken(email, userRepository.findByEmail(email).getAppUserRoles());
+      return jwtTokenProvider.createToken(email, userRepository.findByEmail(email).getAppUserRole());
     } catch (AuthenticationException e) {
       throw new CustomException("Invalid username/password supplied", HttpStatus.UNPROCESSABLE_ENTITY);
     }
@@ -37,7 +37,7 @@ public class UserService {
     if (!userRepository.existsByEmail(appUser.getEmail())) {
       appUser.setPassword(passwordEncoder.encode(appUser.getPassword()));
       userRepository.save(appUser);
-      return jwtTokenProvider.createToken(appUser.getEmail(), appUser.getAppUserRoles());
+      return jwtTokenProvider.createToken(appUser.getEmail(), appUser.getAppUserRole());
     } else {
       throw new CustomException("Username is already in use", HttpStatus.UNPROCESSABLE_ENTITY);
     }
@@ -60,7 +60,7 @@ public class UserService {
   }
 
   public String refresh(String email) {
-    return jwtTokenProvider.createToken(email, userRepository.findByEmail(email).getAppUserRoles());
+    return jwtTokenProvider.createToken(email, userRepository.findByEmail(email).getAppUserRole());
   }
 
 }

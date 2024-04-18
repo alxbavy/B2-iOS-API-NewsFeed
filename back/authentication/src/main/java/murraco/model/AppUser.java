@@ -3,15 +3,7 @@ package murraco.model;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -30,7 +22,7 @@ public class AppUser {
   @Size(min = 8, message = "Minimum password length: 8 characters")
   private String password;
 
-  @ElementCollection(fetch = FetchType.EAGER)
-  List<AppUserRole> appUserRoles;
+  @Enumerated(EnumType.STRING)
+  AppUserRole appUserRole;
 
 }
