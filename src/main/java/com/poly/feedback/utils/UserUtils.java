@@ -12,10 +12,22 @@ public class UserUtils {
 
     public String getUserWithAuthority(HttpServletRequest request) {
         String token = request.getHeader("Authorization");
+        if(token == null){
+            return null;
+        }
         token = token.substring(7);
         System.out.println(token);
         String email = this.jwtTokenProvider.getEmailFromJWT(token);
         System.out.println("user:L " + email);
         return email;
+    }
+
+    public String getToken(HttpServletRequest request) {
+        String token = request.getHeader("Authorization");
+        if(token == null){
+            return null;
+        }
+        token = token.substring(7);
+        return token;
     }
 }

@@ -1,6 +1,7 @@
 package com.poly.feedback.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -32,6 +33,10 @@ public class FeedBack {
 
     private Long userId;
 
+    private String email;
+
+    private Long productId;
+
     @ManyToOne
     @JoinColumn(name = "feed_back_parent" )
     @JsonIgnoreProperties({"feedbackChild"})
@@ -40,4 +45,5 @@ public class FeedBack {
     @OneToMany(mappedBy = "feedback",cascade = {CascadeType.REMOVE})
     @JsonIgnoreProperties({""})
     private Set<FeedBack> feedbackChild;
+
 }

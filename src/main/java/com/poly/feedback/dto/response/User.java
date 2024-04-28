@@ -1,15 +1,16 @@
-package com.poly.feedback.entity;
+package com.poly.feedback.dto.response;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
 public class User {
 
-    private Long id;
+    private Integer id;
 
     private String email;
+
+    AppUserRole appUserRole;
+
 }
