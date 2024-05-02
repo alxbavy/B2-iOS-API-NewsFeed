@@ -79,7 +79,7 @@ public class FeedBackServiceImp implements FeedBackService {
 
     @Override
     public FeedBackResponse update(FeedBackRequest feedBackRequest, Long id, HttpServletRequest httpServletRequest) {
-        if(id != null){
+        if(id == null){
             throw new MessageException("Id can't null");
         }
         String token = userUtils.getToken(httpServletRequest);
