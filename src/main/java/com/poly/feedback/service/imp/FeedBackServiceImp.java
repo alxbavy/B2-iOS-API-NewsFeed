@@ -108,7 +108,7 @@ public class FeedBackServiceImp implements FeedBackService {
 
     @Override
     public void delete(Long id, HttpServletRequest httpServletRequest) {
-        if(id != null){
+        if(id == null){
             throw new MessageException("Id can't null");
         }
         String token = userUtils.getToken(httpServletRequest);
