@@ -25,24 +25,24 @@ public class FeedBackApi {
     @Autowired
     private UserUtils userUtils;
 
-    @GetMapping({"/public/find-by-product"})
+    @GetMapping({"/find-by-product"})
     public ResponseEntity<?> findByProduct(@RequestParam("product-id") Long productId, Pageable pageable, HttpServletRequest request) {
         return new ResponseEntity<>(feedBackService.findByProductId(productId,pageable), HttpStatus.OK);
     }
 
-    @PostMapping("/user/create")
+    @PostMapping("")
     public ResponseEntity<?> create(@RequestBody FeedBackRequest feedBackRequest, HttpServletRequest request){
         FeedBackResponse result = feedBackService.save(feedBackRequest, request);
         return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
 
-    @PostMapping("/user/update/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<?> update(@RequestBody FeedBackRequest feedBackRequest,@PathVariable Long id, HttpServletRequest request){
         FeedBackResponse result = feedBackService.update(feedBackRequest, id, request);
         return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/user/delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id, HttpServletRequest request){
         feedBackService.delete(id, request);
         return new ResponseEntity<>(HttpStatus.OK);

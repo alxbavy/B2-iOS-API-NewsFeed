@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface AuthenticationService {
+
     ResponseEntity<String> getToken(String email, String password);
 
     User getUserByToken(HttpServletRequest httpServletRequest);

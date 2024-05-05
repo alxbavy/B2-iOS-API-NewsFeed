@@ -16,7 +16,6 @@ public class JwtTokenProvider {
     @PostConstruct
     protected void init() {
         this.JWT_SECRET = Base64.getEncoder().encodeToString(this.JWT_SECRET.getBytes());
-        System.out.println(this.JWT_SECRET);
     }
 
     public String getEmailFromJWT(String token) {
